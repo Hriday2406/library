@@ -1,0 +1,195 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abbr, acronym, address, big, cite, code,del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var,b, u, i, center,dl, dt, dd, ol, ul, li,fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td,article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color : #121212;
+    --secondary-color : #0e7490;
+    --background-color : #313131;
+    /* --accent-color : #990000; */
+    --accent-color : #00ffff;
+}
+
+body {
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+}
+
+svg {
+    fill: white;
+    transition: all 0.025s linear;
+}
+svg:active {
+    transform: translateY(2.5px);
+}
+
+/* HEADER */
+header {
+    color: white;
+    padding: 15px 3.5rem;
+    background-color: var(--primary-color);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.025s linear;
+}
+
+.logo svg {
+    fill: var(--accent-color);
+    width: 50px;
+}
+
+/* MAIN */
+main {
+    /* position: relative; */
+    color: white;
+    padding: 1.5rem;
+    /* overflow: hidden; */
+}
+
+main svg {
+    fill: red;
+    width: 30px;
+}
+
+#main-heading {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.card {
+    padding: 20px;
+    background-color: var(--primary-color);
+    border-top: 10px solid var(--accent-color);
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 20px;
+}
+.book-data {
+    text-align: center;
+    font-weight: bold;
+    background-color: var(--background-color);
+    border-radius: 10px;
+}
+/* .book-title {
+    margin: 10px 0px;
+} */
+/* .book-data span {
+} */
+.card h2 {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+.card p {
+    color: #808080;
+}
+.card span {
+    display: inline-block;
+    margin: 5px;
+    padding: 0.5em 0px;
+}
+.card-svg {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.container {
+    height: 100%;
+    padding-bottom: 50px;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(200px, 1fr));
+    gap: 25px;
+}
+
+/* SWITCH */
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 70px;
+    height: 40px;
+}
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 40px;
+    background-color: var(--background-color);
+    transition: .4s;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 25px;
+    width: 25px;
+    left: 7.5px;
+    bottom: 8px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    transition: .4s;
+}
+input:checked + .slider {
+    background-color: var(--accent-color);
+}
+input:checked + .slider:before {
+    background-color: var(--background-color);
+    transform: translateX(30px);
+}
+
+/* NEW BOOK BUTTON */
+.book-new {
+    font-size: 50px;
+    text-align: center;
+    height: 50px;
+    width: 50px;
+    padding: 0px;
+    border: none;
+    border-radius: 25px;
+    /* color: white; */
+    color: var(--primary-color);
+    background-color: var(--accent-color);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s;
+}
+.book-new:hover {
+    transform: rotate(90deg) scale(1.25);
+}
+

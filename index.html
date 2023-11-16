@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>view-dashboard</title><path d="M13,3V9H21V3M13,21H21V11H13M3,21H11V15H3M3,13H11V3H3V13Z" /></svg>
+            <h1>Library</h1>
+        </div>
+
+    </header>
+    
+    <main>
+        <div class="books" id="book00">
+            <h1 id="main-heading">Your Books</h1>
+            <div class="container">
+                <div class="card">
+                    <h2 class="book-title">Book Title</h2>
+                    <div class="book-data">
+                        <span>By :</span><span class="book-author">Author</span>
+                    </div>
+                    <div class="book-data">
+                        <span>Pages :</span><span class="book-pages">100</span>
+                    </div>
+                    <div class="book-data">
+                        <span>Pages Read :</span><span class="book-pagesRead">60</span>
+                    </div>
+                    <div class="card-svg">
+                        <label class="switch">
+                            <input type="checkbox" class="book-readStatus">
+                            <div class="slider"></div>
+                        </label>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>delete-outline</title><path d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8,9H16V19H8V9M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z" /></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="book-new">+</button>
+    </main>
+</body>
+</html>
