@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library</title>
+    <title>My Library</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
@@ -12,37 +15,36 @@
     <header>
         <div class="logo">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>view-dashboard</title><path d="M13,3V9H21V3M13,21H21V11H13M3,21H11V15H3M3,13H11V3H3V13Z" /></svg>
-            <h1>Library</h1>
+            <h1>My Library</h1>
         </div>
-
     </header>
     
     <main>
-        <div class="books" id="book00">
-            <h1 id="main-heading">Your Books</h1>
+        <div class="books">
+            <h1 id="main-heading">My Books</h1>
             <div class="container">
-                <div class="card">
-                    <h2 class="book-title">Book Title</h2>
-                    <div class="book-data">
-                        <span>By :</span><span class="book-author">Author</span>
-                    </div>
-                    <div class="book-data">
-                        <span>Pages :</span><span class="book-pages">100</span>
-                    </div>
-                    <div class="book-data">
-                        <span>Pages Read :</span><span class="book-pagesRead">60</span>
-                    </div>
-                    <div class="card-svg">
-                        <label class="switch">
-                            <input type="checkbox" class="book-readStatus">
-                            <div class="slider"></div>
-                        </label>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>delete-outline</title><path d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8,9H16V19H8V9M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z" /></svg>
-                    </div>
-                </div>
             </div>
         </div>
         <button class="book-new">+</button>
     </main>
+
+    <dialog id="book-dialog">
+        <h2>ADD NEW BOOK</h2>
+        <form id="book-form">
+            <div class="dialog-fields">
+                <input type="text" placeholder="Title" class="book-input">
+                <input type="text" placeholder="Author" class="book-input">
+                <input type="number" placeholder="Number of Pages" class="book-input">
+                <div>
+                    <label for="readStatus">Have you read the book ?</label>
+                    <input type="checkbox" id="readStatus" class="book-input">
+                </div>
+            </div>
+            <div class="dialog-btn">
+                <button formmethod="dialog" class="btn">Cancel</button>
+                <button class="btn" id="addBtn">Add</button>
+            </div>
+        </form>
+    </dialog>
 </body>
 </html>

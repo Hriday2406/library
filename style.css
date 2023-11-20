@@ -12,10 +12,9 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 :root {
     --primary-color : #121212;
-    --secondary-color : #0e7490;
     --background-color : #313131;
-    /* --accent-color : #990000; */
     --accent-color : #00ffff;
+    --text-color : #ffffff;
 }
 
 body {
@@ -24,10 +23,16 @@ body {
     background-color: var(--background-color);
     display: flex;
     flex-direction: column;
+
+    background: url('/Images/bg.jpg');
+    background-size: cover;
+    background-position: center 0%;
+    background-attachment: fixed;
+    backdrop-filter: blur(2px) brightness(1.25);
 }
 
 svg {
-    fill: white;
+    fill: var(--text-color);
     transition: all 0.025s linear;
 }
 svg:active {
@@ -36,7 +41,9 @@ svg:active {
 
 /* HEADER */
 header {
-    color: white;
+    position: sticky;
+    top: 0;
+    color: var(--text-color);
     padding: 15px 3.5rem;
     background-color: var(--primary-color);
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -58,14 +65,12 @@ header {
 
 /* MAIN */
 main {
-    /* position: relative; */
-    color: white;
+    color: var(--text-color);
     padding: 1.5rem;
-    /* overflow: hidden; */
 }
 
 main svg {
-    fill: red;
+    fill: #ff0000;
     width: 30px;
 }
 
@@ -93,11 +98,6 @@ main svg {
     background-color: var(--background-color);
     border-radius: 10px;
 }
-/* .book-title {
-    margin: 10px 0px;
-} */
-/* .book-data span {
-} */
 .card h2 {
     font-size: 1.25rem;
     font-weight: bold;
@@ -119,7 +119,7 @@ main svg {
     height: 100%;
     padding-bottom: 50px;
     display: grid;
-    grid-template-columns: repeat(5, minmax(200px, 1fr));
+    grid-template-columns: repeat(4, minmax(250px, 1fr));
     gap: 25px;
 }
 
@@ -170,6 +170,7 @@ input:checked + .slider:before {
 
 /* NEW BOOK BUTTON */
 .book-new {
+    z-index: 999;
     font-size: 50px;
     text-align: center;
     height: 50px;
@@ -177,19 +178,93 @@ input:checked + .slider:before {
     padding: 0px;
     border: none;
     border-radius: 25px;
-    /* color: white; */
     color: var(--primary-color);
     background-color: var(--accent-color);
     box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;
+    cursor: pointer;
     position: absolute;
     bottom: 50px;
     right: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.25s;
+    transition: transform 0.25s, background-color 0.1s, color 0.1s;
 }
 .book-new:hover {
     transform: rotate(90deg) scale(1.25);
 }
+.book-new:active {
+    transform: rotate(90deg) scale(1.25);
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+}
+.book-new-alt {
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+}
 
+/* DIALOG */
+::backdrop {
+    backdrop-filter: blur(5px);
+}
+
+dialog {
+    width: 20%;
+    font-size: 1rem;
+    padding: 30px;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: 1px solid var(--accent-color);
+    border-radius: 20px;
+}
+
+dialog > h2 {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 25px;
+    color: var(--text-color);
+    text-decoration: underline;
+    text-decoration-color: var(--accent-color);
+    text-decoration-style: wavy;
+}
+
+#book-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.dialog-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.dialog-fields > input {
+    height: 40px;
+    font-size: 1rem;
+    padding: 0.5em;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    border: none;
+}
+
+.dialog-fields > div {
+    text-align: center;
+}
+
+.dialog-btn {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    width: 50%;
+    font-size: 1rem;
+    padding: 0.5em;
+    border: none;
+    border-top: 5px solid var(--accent-color);
+    border-radius: 10px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}

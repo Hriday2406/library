@@ -1,41 +1,33 @@
 // Selectors
-let books = document.querySelector('.container');
-let bookTitle = document.querySelector('.book-title');
-let bookAuthor = document.querySelector('.book-author');
-let bookPages = document.querySelector('.book-pages');
-let bookPagesRead = document.querySelector('.book-pagesRead');
-let bookreadStatus = document.querySelector('.book-readStatus');
-
+const books = document.querySelector('.container');
+const bookTitle = document.querySelector('.book-title');
+const bookAuthor = document.querySelector('.book-author');
+const bookPages = document.querySelector('.book-pages');
+const bookNewBtn = document.querySelector('.book-new');
+const bookDialog = document.getElementById('book-dialog');
+const addBtn = document.getElementById('addBtn');
+const dialogFields = document.querySelectorAll('.book-input');
+const bookForm = document.getElementById('book-form');
 
 // State
-const myLibrary = [{title:"Title 1", author:"Author 1", pages:"101", pagesRead:"51", readStatus:"" }, {title:"Title 2", author:"Author 2", pages:"102", pagesRead:"102", readStatus:"checked" }];
+const myLibrary = [{id: 0, title:"Temporary Book 1", author:"Author", pages:"100", readStatus:"" }, {id: 1, title:"Temporary Book 2", author:"Author", pages:"200", readStatus:"checked" }, {id: 2, title:"Temporary Book 3", author:"Author", pages:"300", readStatus:"" }];
 let bookPointer = 0;
-
+let bookId = 3
 
 // On Mount
-function Book(title, author, pages, pagesRead){
+function Book(title, author, pages, readStatus){
+    this.id = bookId++;
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.pagesRead = pagesRead;
-    if(pages == pagesRead){
-        this.readStatus = "checked";
-    }
-    else {
-        this.readStatus = "";
-    }
+    this.readStatus = (readStatus) ? "checked" : "";
 }
+displayLibrary();
 
 
 // Handlers
-function addBookToLibrary(){        // TEMPORARY
-    let title = prompt("Enter Title of the book :");
-    let author = prompt("Enter Author of the book :");
-    let pages = prompt("Enter No. of pages in the book :");
-    let pagesRead = prompt("Enter No. of pages you have read :");
-
-    let tempBook = new Book(title, author, pages, pagesRead);
-
+function addBookToLibrary(title, author, pages, readStatus){
+    let tempBook = new Book(title, author, pages, readStatus);
     myLibrary.push(tempBook);
     displayLibrary();
 }
@@ -43,7 +35,7 @@ function addBookToLibrary(){        // TEMPORARY
 function displayLibrary(){
     while(bookPointer < myLibrary.length){
         let code = `
-        <div class="card" id="book${bookPointer}">
+        <div class="card">
             <h2 class="book-title">${myLibrary[bookPointer].title}</h2>
             <div class="book-data">
                 <span>By :</span><span class="book-author">${myLibrary[bookPointer].author}</span>
@@ -51,15 +43,12 @@ function displayLibrary(){
             <div class="book-data">
                 <span>Pages :</span><span class="book-pages">${myLibrary[bookPointer].pages}</span>
             </div>
-            <div class="book-data">
-                <span>Pages Read :</span><span class="book-pagesRead">${myLibrary[bookPointer].pagesRead}</span>
-            </div>
             <div class="card-svg">
                 <label class="switch">
                     <input type="checkbox" class="book-readStatus" ${myLibrary[bookPointer].readStatus}>
-                    <div class="slider"></div>
+                    <div class="slider" onclick="changeReadStatus(${bookPointer})"></div>
                 </label>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>delete-outline</title><path d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8,9H16V19H8V9M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z" /></svg>
+                <svg class="deleteBtn" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" onclick="deleteBook(${bookPointer})" ><title></title><path d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8,9H16V19H8V9M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z" /></svg>
             </div>
         </div>
         `;
@@ -68,11 +57,45 @@ function displayLibrary(){
     }
 }
 
+function deleteBook(id){
+    myLibrary.splice(id, 1);
+    let i = 0;
+    if(myLibrary.length != 0)
+        for(i=0; i<myLibrary.length; i++)
+            myLibrary[i].id = i;
+    document.querySelector('.container').innerHTML = "";
+    bookPointer = 0;
+    displayLibrary();
+}
+
+function changeReadStatus(id){
+    const bookReadStatus = document.querySelectorAll('.book-readStatus');
+    myLibrary[id].readStatus = (myLibrary[id].readStatus == 'checked') ? '' : 'checked';
+}
+
 
 // Events
+bookNewBtn.addEventListener('click', () => {
+    bookNewBtn.classList.add("book-new-alt");
+    bookDialog.showModal();
+});
 
+addBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    if(dialogFields[0].value == '' || dialogFields[1].value == '' ||dialogFields[2].value == '' ||dialogFields[3].value == ''){
+        alert("Enter Valid Information !!");
+    }
+    else {
+        addBookToLibrary(dialogFields[0].value, dialogFields[1].value, dialogFields[2].value, dialogFields[3].checked);
+    }
+    bookForm.reset();
+    bookNewBtn.classList.remove("book-new-alt");
+    bookDialog.close();
+})
 
-
+bookDialog.addEventListener('close', () => {
+    bookNewBtn.classList.remove("book-new-alt");
+})
 
 
 
